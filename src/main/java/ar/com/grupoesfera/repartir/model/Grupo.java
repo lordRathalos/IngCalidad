@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Grupo {
@@ -70,5 +72,13 @@ public class Grupo {
     public boolean estaFormado() {
 
         return (miembros != null) && (miembros.size() > 1);
+    }
+
+    public boolean tieneMiembrosRepetidos(){
+          var dublicados = miembros.stream().distinct()
+                 .filter(i -> Collections.frequency(miembros, i) > 1)
+                 .collect(Collectors.toSet());
+
+          return dublicados.isEmpty();
     }
 }

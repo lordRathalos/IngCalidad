@@ -36,3 +36,9 @@ Característica: Crear Grupo para repartir gastos
       Cuando el usuario crea un grupo
       Entonces debería visualiza dentro del listado el grupo creado con total '$  0,00'
 
+  Regla: No puedo crear un gupo con miembros repetidos
+
+    Escenario: Crea un grupo con dos miembros repetidos
+      Dado que el usuario inició Repartir
+      Cuando el usuario intenta crea un grupo con miembros repetidos 'Pepe' y 'Pepe'
+      Entonces no debería crear el grupo con miembros repetidos
