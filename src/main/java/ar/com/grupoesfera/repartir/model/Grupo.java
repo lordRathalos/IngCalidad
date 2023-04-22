@@ -81,4 +81,8 @@ public class Grupo {
 
           return dublicados.isEmpty();
     }
+
+    public boolean tieneNombreValido(){
+        return (nombre.length() > 2 && nombre.length() < 51);
+    }
 }

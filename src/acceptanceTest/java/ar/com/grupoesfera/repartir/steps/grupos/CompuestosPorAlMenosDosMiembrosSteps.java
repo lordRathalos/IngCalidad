@@ -39,25 +39,6 @@ public class CompuestosPorAlMenosDosMiembrosSteps extends CucumberSteps {
         wait.until(visibilityOfElementLocated(By.id("mensajesToast")));
     }
 
-    @Cuando("el usuario intenta crea un grupo con miembros repetidos {miembros}")
-    public void elUsuarioIntentaCreaUnGrupoConMiembrosRepetidos(List<String> miembros){
-
-        this.miembros = miembros;
-
-        var crearGruposButton = driver.findElement(By.id("crearGruposButton"));
-        crearGruposButton.click();
-
-        driver.findElement(By.id("nombreGrupoNuevoInput")).sendKeys("After Office");
-
-        var miembrosInput = driver.findElement(By.id("miembrosGrupoNuevoInput"));
-        miembros.forEach(miembro -> {
-            miembrosInput.sendKeys(miembro);
-            miembrosInput.sendKeys(Keys.ENTER);
-        });
-
-        driver.findElement(By.id("guardarGrupoNuevoButton")).click();
-    }
-
     @Entonces("no debería crear el grupo con miembros repetidos")
     public void noDeberíaCrearElGrupoConMiembrosRepetidos(){
         var wait = new WebDriverWait(driver, 2);
@@ -99,6 +80,19 @@ public class CompuestosPorAlMenosDosMiembrosSteps extends CucumberSteps {
     public void noDeberiaCrearElGrupoConUnUnicoMiembro() {
 
         // TODO
+    }
+
+    @Entonces("no debería crear el grupo con un nombre no valido")
+    public void noDeberiaCrearElGrupoConUnNombreNoValido() {
+
+        var wait = new WebDriverWait(driver, 2);
+        var mensajesToast = wait.withMessage("Mostro Toast")
+                .until(visibilityOfElementLocated(By.id("mensajesToast")));
+        wait.withMessage("Título del Toast es 'Error'")
+                .until(textToBePresentInElement(mensajesToast, "Error"));
+        assertThat(mensajesToast.getText())
+                .as("Descripción del Toast")
+                .contains("No se puede guardar");
     }
 
     @Y("debería ser informado que necesita tener al menos dos miembros")

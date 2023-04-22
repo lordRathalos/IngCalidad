@@ -37,9 +37,14 @@ public class GruposService {
 
         }
 
+        if(!grupo.tieneNombreValido()){
+            throw new GrupoInvalidoException();
+        }
+
         if(!grupo.tieneMiembrosRepetidos()){
             throw new GrupoInvalidoException();
         }
+
         montos.inicializarTotal(grupo);
         repository.save(grupo);
 
