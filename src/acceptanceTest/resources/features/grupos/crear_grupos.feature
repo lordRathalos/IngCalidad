@@ -41,7 +41,7 @@ Característica: Crear Grupo para repartir gastos
       Cuando el usuario crea un grupo
       Entonces debería visualiza dentro del listado el grupo creado con total '$  0,00'
 
-  Regla: Los grupos tienen un nombre entre 2 y 20 caracteres
+  Regla: Los grupos tienen un nombre entre 2 y 50 caracteres
 
     Escenario: Crea un grupo con nombre
       Dado que el usuario inició Repartir
