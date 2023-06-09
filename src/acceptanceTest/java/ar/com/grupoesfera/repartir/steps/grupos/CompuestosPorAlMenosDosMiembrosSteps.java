@@ -39,18 +39,6 @@ public class CompuestosPorAlMenosDosMiembrosSteps extends CucumberSteps {
         wait.until(visibilityOfElementLocated(By.id("mensajesToast")));
     }
 
-    @Entonces("no debería crear el grupo con miembros repetidos")
-    public void noDeberíaCrearElGrupoConMiembrosRepetidos(){
-        var wait = new WebDriverWait(driver, 2);
-        var mensajesToast = wait.withMessage("Mostro Toast")
-                .until(visibilityOfElementLocated(By.id("mensajesToast")));
-        wait.withMessage("Título del Toast es 'Error'")
-                .until(textToBePresentInElement(mensajesToast, "Error"));
-        assertThat(mensajesToast.getText())
-                .as("Descripción del Toast")
-                .contains("No se puede guardar");
-    }
-
     @Entonces("visualiza dentro del listado el grupo con los miembros indicados")
     public void visualizaDentroDelListadoElGrupoConLosMiembrosIndicados() {
 
@@ -82,24 +70,19 @@ public class CompuestosPorAlMenosDosMiembrosSteps extends CucumberSteps {
         // TODO
     }
 
-    @Entonces("no debería crear el grupo con un nombre no valido")
-    public void noDeberiaCrearElGrupoConUnNombreNoValido() {
-
-        var wait = new WebDriverWait(driver, 2);
-        var mensajesToast = wait.withMessage("Mostro Toast")
-                .until(visibilityOfElementLocated(By.id("mensajesToast")));
-        wait.withMessage("Título del Toast es 'Error'")
-                .until(textToBePresentInElement(mensajesToast, "Error"));
-        assertThat(mensajesToast.getText())
-                .as("Descripción del Toast")
-                .contains("No se puede guardar");
-    }
-
     @Y("debería ser informado que necesita tener al menos dos miembros")
     public void deberiaSerInformadoQueNecesitaTenerAlMenosDosMiembros() {
+        verificarToastDeError();
+    }
 
+    @Entonces("no debería crear el grupo {string}")
+    public void noDeberíaCrearElGrupoConMiembrosRepetidos(String grupo) {
+        verificarToastDeError();
+    }
+
+    private void verificarToastDeError() {
         var wait = new WebDriverWait(driver, 2);
-        var mensajesToast = wait.withMessage("Mostro Toast")
+        var mensajesToast = wait.withMessage("Mostró Toast")
                 .until(visibilityOfElementLocated(By.id("mensajesToast")));
         wait.withMessage("Título del Toast es 'Error'")
                 .until(textToBePresentInElement(mensajesToast, "Error"));

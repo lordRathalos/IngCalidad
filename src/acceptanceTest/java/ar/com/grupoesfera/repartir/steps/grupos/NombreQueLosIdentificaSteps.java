@@ -64,13 +64,6 @@ public class NombreQueLosIdentificaSteps extends CucumberSteps {
 
         driver.findElement(By.id("guardarGrupoNuevoButton")).click();
     }
-
-    @Entonces("no debería crear el grupo sin nombre")
-    public void noDeberiaCrearElGrupoSinNombre() {
-
-        // TODO
-    }
-
     @Y("debería ser informado que no puede crear un grupo sin nombre")
     public void deberiaSerInformadoQueNoPuedeCrearUnGrupoSinNombre() {
 
