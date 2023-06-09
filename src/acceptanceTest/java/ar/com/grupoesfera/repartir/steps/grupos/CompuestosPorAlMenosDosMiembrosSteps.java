@@ -76,7 +76,7 @@ public class CompuestosPorAlMenosDosMiembrosSteps extends CucumberSteps {
     }
 
     @Entonces("no debería crear el grupo {string}")
-    public void noDeberíaCrearElGrupoConMiembrosRepetidos(String grupo) {
+    public void noDeberíaCrearElGrupoCon(String grupo) {
         verificarToastDeError();
     }
 
