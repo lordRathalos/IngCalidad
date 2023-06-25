@@ -70,11 +70,6 @@ public class CompuestosPorAlMenosDosMiembrosSteps extends CucumberSteps {
         // TODO
     }
 
-    @Y("debería ser informado que necesita tener al menos dos miembros")
-    public void deberiaSerInformadoQueNecesitaTenerAlMenosDosMiembros() {
-        verificarToastDeError();
-    }
-
     @Entonces("no debería crear el grupo {string}")
     public void noDeberíaCrearElGrupoCon(String grupo) {
         verificarToastDeError();
